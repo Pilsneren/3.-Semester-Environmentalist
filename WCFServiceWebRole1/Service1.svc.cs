@@ -12,6 +12,9 @@ namespace WCFServiceWebRole1
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        private const string ConnectionString =
+            "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password={Admin123};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
