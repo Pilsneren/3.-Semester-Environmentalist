@@ -35,7 +35,7 @@ namespace WCFServiceWebRole1
                     return true;
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 return false;
             }
@@ -78,19 +78,16 @@ namespace WCFServiceWebRole1
         public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomName)
         {
             List<Measurement> measurements = new List<Measurement>();
-
-            string convertedFromDate = fromDate.ToString("yyyy-MM-dd");
-            string convertedToDate = toDate.ToString("yyyy-MM-dd");
-
-
+            var from = new DateTime(2015, 11, 26, 07, 30, 11);
+            var to = new DateTime(2015, 11, 26, 14, 00, 00);
 
             try
             {
-                using (
-                    SqlCommand selectCommand =
-                        new SqlCommand(
-                            $"SELECT * FROM Measurements WHERE Date BETWEEN '{DateTime.Parse(convertedFromDate)}' AND '{convertedToDate}';", _sqlConnection)
-                    )
+                using ( SqlCommand selectCommand = new SqlCommand("SELECT * FROM Measurements WHERE Date BETWEEN '2015-11-26 07:00' AND '2015-11-26 10:00';", _sqlConnection))
+                    //SqlCommand selectCommand =
+                    //    new SqlCommand(
+                    //        $"SELECT * FROM Measurements WHERE Date BETWEEN '{fromDate.ToString("yyyy-MM-dd hh:mm:ss.fff")}' AND '{toDate.ToString("yyyy-MM-dd hh:mm:ss.fff")}';", _sqlConnection)
+                    
                 {
                     var reader = selectCommand.ExecuteReader();
 
@@ -241,6 +238,46 @@ namespace WCFServiceWebRole1
             }
 
             return rooms;
+        }
+
+        public Measurement InsertMeasurement(Measurement measurement)
+        {
+            try
+            {
+                using (
+                    SqlCommand insertCommand =
+                        new SqlCommand(
+                            $"INSERT INTO Measurements VALUES({measurement.Room}, {measurement.Temperature}, {measurement.Movement}, {measurement.Date});",
+                            _sqlConnection))
+                {
+                    insertCommand.ExecuteNonQuery();
+                    return measurement;
+                }
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
+        }
+
+        public Measurement DeleteMeasurement(Measurement measurement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Room InsertRoom(Room room)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Room UpdateRoom(string roomToBeUpdated, Room newRoom)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Room DeleteRoom(string roomName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

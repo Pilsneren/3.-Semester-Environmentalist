@@ -31,6 +31,20 @@ namespace WCFServiceWebRole1
         [OperationContract]
         List<Room> GetRoomsByDate(DateTime date, bool above = true);
 
+        [OperationContract]
+        Measurement InsertMeasurement(Measurement measurement);
+
+        [OperationContract]
+        Measurement DeleteMeasurement(Measurement measurement);
+
+        [OperationContract]
+        Room InsertRoom(Room room);
+
+        [OperationContract]
+        Room UpdateRoom(string roomToBeUpdated, Room newRoom);
+
+        [OperationContract]
+        Room DeleteRoom(string roomName);
 
     }
 
