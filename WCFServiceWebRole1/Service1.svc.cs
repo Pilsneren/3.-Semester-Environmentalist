@@ -83,12 +83,10 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using ( SqlCommand selectCommand = new SqlCommand("SELECT * FROM Measurements WHERE Date BETWEEN '2015-11-26 07:00' AND '2015-11-26 10:00';", _sqlConnection))
-                    //SqlCommand selectCommand =
-                    //    new SqlCommand(
-                    //        $"SELECT * FROM Measurements WHERE Date BETWEEN '{fromDate.ToString("yyyy-MM-dd hh:mm:ss.fff")}' AND '{toDate.ToString("yyyy-MM-dd hh:mm:ss.fff")}';", _sqlConnection)
-                    
+                using ( SqlCommand selectCommand = new SqlCommand("SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate;", _sqlConnection))
                 {
+                    selectCommand.Parameters.AddWithValue("@fromdate", fromDate);
+                    selectCommand.Parameters.AddWithValue("@todate", toDate);
                     var reader = selectCommand.ExecuteReader();
 
                     while (reader.Read())
@@ -247,10 +245,15 @@ namespace WCFServiceWebRole1
                 using (
                     SqlCommand insertCommand =
                         new SqlCommand(
-                            $"INSERT INTO Measurements VALUES({measurement.Room}, {measurement.Temperature}, {measurement.Movement}, {measurement.Date});",
+                            $"INSERT INTO Measurements (Rooms, Temperature, Movement, Date) VALUES(@Rooms, @Temperature, @Movement, @Date);",
                             _sqlConnection))
                 {
+                    insertCommand.Parameters.AddWithValue("@Rooms", measurement.Room);
+                    insertCommand.Parameters.AddWithValue("@Temperature", measurement.Temperature);
+                    insertCommand.Parameters.AddWithValue("@Movement", measurement.Movement);
+                    insertCommand.Parameters.AddWithValue("@Date", measurement.Date);
                     insertCommand.ExecuteNonQuery();
+
                     return measurement;
                 }
             }
@@ -262,22 +265,71 @@ namespace WCFServiceWebRole1
 
         public Measurement DeleteMeasurement(Measurement measurement)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (
+                    SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Measurements WHERE Id={measurement.Id}",
+                        _sqlConnection))
+                {
+                    deleteCommand.ExecuteNonQuery();
+                    return measurement;
+                }
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
         }
 
         public Room InsertRoom(Room room)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlCommand insertCommand = new SqlCommand($"INSERT INTO Rooms VALUES({room.Id}, '{room.Name}');", _sqlConnection))
+                {
+                    insertCommand.ExecuteNonQuery();
+                    return room;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return null;
+            }
         }
 
         public Room UpdateRoom(string roomToBeUpdated, Room newRoom)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (
+                    SqlCommand updateCommand =
+                        new SqlCommand(
+                            $"UPDATE Rooms SET Id={newRoom.Id}, Name='{newRoom.Name}' WHERE Name='{roomToBeUpdated}';", _sqlConnection))
+                {
+                    updateCommand.ExecuteNonQuery();
+                    return newRoom;
+                }
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
         }
 
         public Room DeleteRoom(string roomName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Rooms WHERE Name='{roomName}';", _sqlConnection))
+                {
+                    deleteCommand.ExecuteNonQuery();
+                    return new Room() {Name = roomName};
+                }
+            }
+            catch (SqlException)
+            {
+                return null; 
+            }
         }
     }
 }
