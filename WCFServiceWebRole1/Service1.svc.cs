@@ -75,7 +75,7 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
-        public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomName)
+        public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomNumber)
         {
             List<Measurement> measurements = new List<Measurement>();
             var from = new DateTime(2015, 11, 26, 07, 30, 11);
@@ -83,10 +83,11 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using ( SqlCommand selectCommand = new SqlCommand("SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate;", _sqlConnection))
+                using ( SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms=@roomNumber AND WHERE Date BETWEEN @fromdate AND @todate;", _sqlConnection))
                 {
                     selectCommand.Parameters.AddWithValue("@fromdate", fromDate);
                     selectCommand.Parameters.AddWithValue("@todate", toDate);
+                    selectCommand.Parameters.AddWithValue("@roomNumber", roomNumber);
                     var reader = selectCommand.ExecuteReader();
 
                     while (reader.Read())
