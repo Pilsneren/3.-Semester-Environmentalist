@@ -83,11 +83,12 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using ( SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms=@roomNumber AND WHERE Date BETWEEN @fromdate AND @todate;", _sqlConnection))
+                using ( SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate AND Rooms=@roomNumber;", _sqlConnection))
                 {
                     selectCommand.Parameters.AddWithValue("@fromdate", fromDate);
                     selectCommand.Parameters.AddWithValue("@todate", toDate);
                     selectCommand.Parameters.AddWithValue("@roomNumber", roomNumber);
+                    
                     var reader = selectCommand.ExecuteReader();
 
                     while (reader.Read())
