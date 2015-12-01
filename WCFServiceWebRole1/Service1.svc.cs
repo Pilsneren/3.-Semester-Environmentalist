@@ -16,7 +16,7 @@ namespace WCFServiceWebRole1
     {
         private const string ConnectionString =
             "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=true";
-        
+
         private SqlConnection _sqlConnection;
 
         public Service1()
@@ -39,7 +39,7 @@ namespace WCFServiceWebRole1
             {
                 return false;
             }
-            
+
         }
 
         public List<Measurement> GetMeasurementsFromRoom(int roomId)
@@ -48,25 +48,25 @@ namespace WCFServiceWebRole1
 
             try
             {
-                    using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
+                using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
+                {
+                    var reader = selectCommand.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        var reader = selectCommand.ExecuteReader();
-
-                        while (reader.Read())
+                        var m = new Measurement()
                         {
-                            var m = new Measurement()
-                            {
-                                Id = reader.GetInt32(0),
-                                Room = reader.GetInt32(1),
-                                Temperature = reader.GetDouble(2),
-                                Movement = reader.GetDateTime(3),
-                                Date = reader.GetDateTime(4)
-                            };
-                            measurements.Add(m);
-                        }
-
+                            Id = reader.GetInt32(0),
+                            Room = reader.GetInt32(1),
+                            Temperature = reader.GetDouble(2),
+                            Movement = reader.GetDateTime(3),
+                            Date = reader.GetDateTime(4)
+                        };
+                        measurements.Add(m);
                     }
-            } 
+
+                }
+            }
             catch (SqlException)
             {
 
@@ -78,15 +78,15 @@ namespace WCFServiceWebRole1
         public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
-            
+
             try
             {
-                using ( SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate AND Rooms=@roomNumber;", _sqlConnection))
+                using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate AND Rooms=@roomNumber;", _sqlConnection))
                 {
                     selectCommand.Parameters.AddWithValue("@fromdate", fromDate);
                     selectCommand.Parameters.AddWithValue("@todate", toDate);
                     selectCommand.Parameters.AddWithValue("@roomNumber", roomId);
-                    
+
                     var reader = selectCommand.ExecuteReader();
 
                     while (reader.Read())
@@ -103,11 +103,11 @@ namespace WCFServiceWebRole1
                     }
                 }
 
-                
+
             }
             catch (SqlException)
             {
-                
+
             }
 
             return measurements;
@@ -116,18 +116,37 @@ namespace WCFServiceWebRole1
         public List<Measurement> GetLatestMeasurements()
         {
             List<Measurement> measurements = new List<Measurement>();
-            List<Room> rooms = GetRooms();
 
-            
 
-            if (rooms.Count != 0)
+            try
             {
-                measurements.AddRange(from r in rooms select GetMeasurementsFromRoom(r.Id) into meas select (from Measurement m in meas orderby m.Date select m) into sortedList select sortedList.ToList<Measurement>().Last());
+                using (SqlCommand insertCommand = new SqlCommand($"SELECT TOP 1 FROM Measurements ORDER BY Date DESC GROUP BY Rooms", _sqlConnection))
+                {
+                    var reader = insertCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var m = new Measurement()
+                        {
+                            Id = reader.GetInt32(0),
+                            Room = reader.GetInt32(1),
+                            Temperature = reader.GetDouble(2),
+                            Movement = reader.GetDateTime(3),
+                            Date = reader.GetDateTime(4)
+                        };
+                        measurements.Add(m);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                return null;
             }
 
 
+
             return measurements;
-        }  
+        }
 
         public List<Room> GetRooms()
         {
@@ -141,14 +160,14 @@ namespace WCFServiceWebRole1
 
                     while (reader.Read())
                     {
-                        var r = new Room() {Id = reader.GetInt32(0), Name = reader.GetString(1)};
+                        var r = new Room() { Id = reader.GetInt32(0), Name = reader.GetString(1) };
                         rooms.Add(r);
                     }
                 }
             }
             catch (SqlException)
             {
-                
+
             }
 
             return rooms;
@@ -173,7 +192,7 @@ namespace WCFServiceWebRole1
 
                         while (reader.Read())
                         {
-                            var r = new Room() {Id = reader.GetInt32(0), Name = reader.GetString(1)};
+                            var r = new Room() { Id = reader.GetInt32(0), Name = reader.GetString(1) };
                             rooms.Add(r);
                         }
                     }
@@ -198,7 +217,7 @@ namespace WCFServiceWebRole1
             }
             catch (SqlException)
             {
-                
+
             }
 
             return rooms;
@@ -248,7 +267,7 @@ namespace WCFServiceWebRole1
             }
             catch (SqlException)
             {
-                
+
             }
 
             return rooms;
@@ -339,12 +358,12 @@ namespace WCFServiceWebRole1
                 using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Rooms WHERE Id='{roomId}';", _sqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();
-                    return new Room() {Id = roomId};
+                    return new Room() { Id = roomId };
                 }
             }
             catch (SqlException)
             {
-                return null; 
+                return null;
             }
         }
     }
