@@ -7,6 +7,8 @@ Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Enviromentalist", "Envirome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFServiceWebRole1", "WCFServiceWebRole1\WCFServiceWebRole1.csproj", "{456A6D47-31FA-4AC3-B515-44B9F126E97E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{18AE1CCA-8C00-43BA-9002-EF8B590AF172}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{456A6D47-31FA-4AC3-B515-44B9F126E97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{456A6D47-31FA-4AC3-B515-44B9F126E97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{456A6D47-31FA-4AC3-B515-44B9F126E97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AE1CCA-8C00-43BA-9002-EF8B590AF172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AE1CCA-8C00-43BA-9002-EF8B590AF172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AE1CCA-8C00-43BA-9002-EF8B590AF172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AE1CCA-8C00-43BA-9002-EF8B590AF172}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,10 +17,13 @@ namespace WCFServiceWebRole1
         bool CheckDatabaseConnection();
 
         [OperationContract]
-        List<Measurement> GetMeasurementsFromRooms(int roomName);
+        List<Measurement> GetMeasurementsFromRoom(int roomId);
 
         [OperationContract]
-        List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomName);
+        List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId);
+
+        [OperationContract]
+        List<Measurement> GetLatestMeasurements();
 
         [OperationContract]
         List<Room> GetRooms();
@@ -41,10 +44,10 @@ namespace WCFServiceWebRole1
         Room InsertRoom(Room room);
 
         [OperationContract]
-        Room UpdateRoom(string roomToBeUpdated, Room newRoom);
+        Room UpdateRoom(int roomId, Room newRoom);
 
         [OperationContract]
-        Room DeleteRoom(string roomName);
+        Room DeleteRoom(int roomId);
 
     }
 

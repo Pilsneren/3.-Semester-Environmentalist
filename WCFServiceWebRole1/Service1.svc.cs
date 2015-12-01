@@ -15,7 +15,7 @@ namespace WCFServiceWebRole1
     public class Service1 : IService1
     {
         private const string ConnectionString =
-            "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=true";
         
         private SqlConnection _sqlConnection;
 
@@ -42,13 +42,13 @@ namespace WCFServiceWebRole1
             
         }
 
-        public List<Measurement> GetMeasurementsFromRooms(int roomName)
+        public List<Measurement> GetMeasurementsFromRoom(int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
 
             try
             {
-                    using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms={roomName};", _sqlConnection))
+                    using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
                     {
                         var reader = selectCommand.ExecuteReader();
 
@@ -75,19 +75,17 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
-        public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomNumber)
+        public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
-            var from = new DateTime(2015, 11, 26, 07, 30, 11);
-            var to = new DateTime(2015, 11, 26, 14, 00, 00);
-
+            
             try
             {
                 using ( SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Date BETWEEN @fromdate AND @todate AND Rooms=@roomNumber;", _sqlConnection))
                 {
                     selectCommand.Parameters.AddWithValue("@fromdate", fromDate);
                     selectCommand.Parameters.AddWithValue("@todate", toDate);
-                    selectCommand.Parameters.AddWithValue("@roomNumber", roomNumber);
+                    selectCommand.Parameters.AddWithValue("@roomNumber", roomId);
                     
                     var reader = selectCommand.ExecuteReader();
 
@@ -114,6 +112,22 @@ namespace WCFServiceWebRole1
 
             return measurements;
         }
+
+        public List<Measurement> GetLatestMeasurements()
+        {
+            List<Measurement> measurements = new List<Measurement>();
+            List<Room> rooms = GetRooms();
+
+            
+
+            if (rooms.Count != 0)
+            {
+                measurements.AddRange(from r in rooms select GetMeasurementsFromRoom(r.Id) into meas select (from Measurement m in meas orderby m.Date select m) into sortedList select sortedList.ToList<Measurement>().Last());
+            }
+
+
+            return measurements;
+        }  
 
         public List<Room> GetRooms()
         {
@@ -299,14 +313,14 @@ namespace WCFServiceWebRole1
             }
         }
 
-        public Room UpdateRoom(string roomToBeUpdated, Room newRoom)
+        public Room UpdateRoom(int roomId, Room newRoom)
         {
             try
             {
                 using (
                     SqlCommand updateCommand =
                         new SqlCommand(
-                            $"UPDATE Rooms SET Id={newRoom.Id}, Name='{newRoom.Name}' WHERE Name='{roomToBeUpdated}';", _sqlConnection))
+                            $"UPDATE Rooms SET Id={newRoom.Id}, Name='{newRoom.Name}' WHERE Id='{roomId}';", _sqlConnection))
                 {
                     updateCommand.ExecuteNonQuery();
                     return newRoom;
@@ -318,14 +332,14 @@ namespace WCFServiceWebRole1
             }
         }
 
-        public Room DeleteRoom(string roomName)
+        public Room DeleteRoom(int roomId)
         {
             try
             {
-                using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Rooms WHERE Name='{roomName}';", _sqlConnection))
+                using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Rooms WHERE Id='{roomId}';", _sqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();
-                    return new Room() {Name = roomName};
+                    return new Room() {Id = roomId};
                 }
             }
             catch (SqlException)
