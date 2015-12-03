@@ -120,7 +120,7 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using (SqlCommand insertCommand = new SqlCommand($"SELECT TOP 1 FROM Measurements ORDER BY Date DESC GROUP BY Rooms", _sqlConnection))
+                using (SqlCommand insertCommand = new SqlCommand($"SELECT Rooms, MAX(Date) AS Date, MAX(Id) AS Id, MAX(Temperature) AS Temperature, MAX(Movement) AS Movement FROM Measurements GROUP BY Rooms", _sqlConnection))
                 {
                     var reader = insertCommand.ExecuteReader();
 
@@ -128,17 +128,17 @@ namespace WCFServiceWebRole1
                     {
                         var m = new Measurement()
                         {
-                            Id = reader.GetInt32(0),
-                            Room = reader.GetInt32(1),
-                            Temperature = reader.GetDouble(2),
-                            Movement = reader.GetDateTime(3),
-                            Date = reader.GetDateTime(4)
+                            Id = reader.GetInt32(2),
+                            Room = reader.GetInt32(0),
+                            Temperature = reader.GetDouble(3),
+                            Movement = reader.GetDateTime(4),
+                            Date = reader.GetDateTime(1)
                         };
                         measurements.Add(m);
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 return null;
             }
