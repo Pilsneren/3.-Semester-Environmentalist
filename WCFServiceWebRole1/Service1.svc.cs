@@ -120,7 +120,7 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using (SqlCommand insertCommand = new SqlCommand($"SELECT Rooms, MAX(Date) AS Date, MAX(Id) AS Id, MAX(Temperature) AS Temperature, MAX(Movement) AS Movement FROM Measurements GROUP BY Rooms", _sqlConnection))
+                using (SqlCommand insertCommand = new SqlCommand($"SELECT Rooms.Id AS RoomId, Rooms.Name AS RoomName, MAX(Measurements.Date) AS Date, MAX(Measurements.Id) AS Id, MAX(Measurements.Temperature) AS Temperature, MAX(Measurements.Movement) AS Movement FROM Measurements INNER JOIN Rooms ON Rooms.Id = Measurements.Rooms GROUP BY Rooms.Name, Rooms.Id", _sqlConnection))
                 {
                     var reader = insertCommand.ExecuteReader();
 
