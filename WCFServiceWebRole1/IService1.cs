@@ -23,7 +23,7 @@ namespace WCFServiceWebRole1
         List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId);
 
         [OperationContract]
-        List<Measurement> GetLatestMeasurements();
+        Dictionary<string, Measurement> GetLatestMeasurements();
 
         [OperationContract]
         List<Room> GetRooms();

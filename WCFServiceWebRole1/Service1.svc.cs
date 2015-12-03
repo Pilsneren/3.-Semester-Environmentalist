@@ -113,14 +113,18 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
-        public List<Measurement> GetLatestMeasurements()
+        public Dictionary<string, Measurement> GetLatestMeasurements()
         {
-            List<Measurement> measurements = new List<Measurement>();
+            Dictionary<string, Measurement> measurements = new Dictionary<string, Measurement>();
 
 
             try
             {
-                using (SqlCommand insertCommand = new SqlCommand($"SELECT Rooms.Id AS RoomId, Rooms.Name AS RoomName, MAX(Measurements.Date) AS Date, MAX(Measurements.Id) AS Id, MAX(Measurements.Temperature) AS Temperature, MAX(Measurements.Movement) AS Movement FROM Measurements INNER JOIN Rooms ON Rooms.Id = Measurements.Rooms GROUP BY Rooms.Name, Rooms.Id", _sqlConnection))
+                using (
+                    SqlCommand insertCommand =
+                        new SqlCommand(
+                            $"SELECT Rooms.Id AS RoomId, Rooms.Name AS RoomName, MAX(Measurements.Date) AS Date, MAX(Measurements.Id) AS Id, MAX(Measurements.Temperature) AS Temperature, MAX(Measurements.Movement) AS Movement FROM Measurements INNER JOIN Rooms ON Rooms.Id = Measurements.Rooms GROUP BY Rooms.Name, Rooms.Id",
+                            _sqlConnection))
                 {
                     var reader = insertCommand.ExecuteReader();
 
@@ -128,13 +132,14 @@ namespace WCFServiceWebRole1
                     {
                         var m = new Measurement()
                         {
-                            Id = reader.GetInt32(2),
                             Room = reader.GetInt32(0),
-                            Temperature = reader.GetDouble(3),
-                            Movement = reader.GetDateTime(4),
-                            Date = reader.GetDateTime(1)
+                            Date = reader.GetDateTime(2),
+                            Id = reader.GetInt32(3),
+                            Temperature = reader.GetDouble(4),
+                            Movement = reader.GetDateTime(5)
+
                         };
-                        measurements.Add(m);
+                        measurements.Add(reader.GetString(1), m);
                     }
                 }
             }
@@ -142,9 +147,6 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
-
-
-
             return measurements;
         }
 
