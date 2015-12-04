@@ -48,7 +48,7 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
+                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * FROM Measurements WHERE Rooms={roomId} ORDER BY Date DESC;", _sqlConnection))
                 {
                     var reader = selectCommand.ExecuteReader();
 
