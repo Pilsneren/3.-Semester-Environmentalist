@@ -42,12 +42,13 @@ namespace WCFServiceWebRole1
 
         }
 
-        public List<Measurement> GetFiftyMeasurementsFromRoom(int roomId)
+        public List<Measurement> GetMeasurementsFromRoom(int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
+
             try
             {
-                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
+                using (SqlCommand selectCommand = new SqlCommand($"SELECT * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
                 {
                     var reader = selectCommand.ExecuteReader();
 

@@ -17,7 +17,7 @@ namespace WCFServiceWebRole1
         bool CheckDatabaseConnection();
 
         [OperationContract]
-        List<Measurement> GetFiftyMeasurementsFromRoom(int roomId);
+        List<Measurement> GetMeasurementsFromRoom(int roomId);
 
         [OperationContract]
         List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId);
