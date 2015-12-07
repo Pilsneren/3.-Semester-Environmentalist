@@ -17,6 +17,9 @@ namespace WCFServiceWebRole1
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        /// <summary>
+        /// Connection string to the Azure hosted database in use. 
+        /// </summary>
         private const string ConnectionString =
             "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=true";
 
@@ -24,6 +27,9 @@ namespace WCFServiceWebRole1
         private IPAddress _localAddress;
 
 
+        /// <summary>
+        /// Constructor used to initialize and establish SQL-connection to the database, while also setting up tracing. 
+        /// </summary>
         public Service1()
         {
             _sqlConnection = new SqlConnection(ConnectionString);
@@ -36,6 +42,10 @@ namespace WCFServiceWebRole1
             TracingSetup();
         }
 
+        /// <summary>
+        /// Testmethod to ensure correct connection to the database. 
+        /// </summary>
+        /// <returns></returns>
         public bool CheckDatabaseConnection()
         {
             try
@@ -53,6 +63,11 @@ namespace WCFServiceWebRole1
 
         }
 
+        /// <summary>
+        /// Returns the latest fifty measurements from the specified room.
+        /// </summary>
+        /// <param name="roomId">Id of the room to get latest fifty measurements from.</param>
+        /// <returns></returns>
         public List<Measurement> GetFiftyMeasurementsFromRoom(int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
@@ -89,6 +104,13 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
+        /// <summary>
+        /// Returns all measurements between the specified dates from the room with the specified id.
+        /// </summary>
+        /// <param name="fromDate">From-date.</param>
+        /// <param name="toDate">To-date.</param>
+        /// <param name="roomId">Id of the room to get measurements from.</param>
+        /// <returns></returns>
         public List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId)
         {
             List<Measurement> measurements = new List<Measurement>();
@@ -127,6 +149,10 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
+        /// <summary>
+        /// Returns the single latest measurement from all rooms. 
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, Measurement> GetLatestMeasurements()
         {
             Dictionary<string, Measurement> measurements = new Dictionary<string, Measurement>();
@@ -165,6 +191,10 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
+        /// <summary>
+        /// Returns the fifty latest measurements from all rooms. 
+        /// </summary>
+        /// <returns></returns>
         public List<Measurement> GetLatestFiftyMeasurementsFromAll()
         {
             List<Measurement> measurements = new List<Measurement>();
@@ -211,6 +241,10 @@ namespace WCFServiceWebRole1
             return measurements;
         }
 
+        /// <summary>
+        /// Returns all rooms.
+        /// </summary>
+        /// <returns></returns>
         public List<Room> GetRooms()
         {
             List<Room> rooms = new List<Room>();
@@ -236,6 +270,12 @@ namespace WCFServiceWebRole1
             return rooms;
         }
 
+        /// <summary>
+        /// Returns all rooms above/below the specified temperature. 
+        /// </summary>
+        /// <param name="temperature">Temperature.</param>
+        /// <param name="above">If left true, the method returns the rooms above the specifed temperature. If set to false, the method returns the rooms below the specified temperature.</param>
+        /// <returns></returns>
         public List<Room> GetRoomsByTemp(double temperature, bool above = true)
         {
             List<Room> rooms = new List<Room>();
@@ -286,13 +326,19 @@ namespace WCFServiceWebRole1
             return rooms;
         }
 
-        public List<Room> GetRoomsByDate(DateTime date, bool above = true)
+        /// <summary>
+        /// Returns all rooms with detected movement after/before the specified date.
+        /// </summary>
+        /// <param name="date">Date.</param>
+        /// <param name="after">If left true, the method returns the rooms that detected movement after the specified date. If set to false, the method returns the rooms that detected movement before the specified date.</param>
+        /// <returns></returns>
+        public List<Room> GetRoomsByDate(DateTime date, bool after = true)
         {
             List<Room> rooms = new List<Room>();
 
             try
             {
-                if (above)
+                if (after)
                 {
                     using (
                         SqlCommand selectAboveCommand =
@@ -336,6 +382,11 @@ namespace WCFServiceWebRole1
             return rooms;
         }
 
+        /// <summary>
+        /// Inserts the specified Measurement object into the database. 
+        /// </summary>
+        /// <param name="measurement">The Measurement to upload to the database.</param>
+        /// <returns></returns>
         public Measurement InsertMeasurement(Measurement measurement)
         {
             try
@@ -362,6 +413,11 @@ namespace WCFServiceWebRole1
             }
         }
 
+        /// <summary>
+        /// Deletes the specified Measurement object from the database.
+        /// </summary>
+        /// <param name="measurement">The Measurement to remove from the database.</param>
+        /// <returns></returns>
         public Measurement DeleteMeasurement(Measurement measurement)
         {
             try
@@ -382,6 +438,11 @@ namespace WCFServiceWebRole1
             }
         }
 
+        /// <summary>
+        /// Inserts the specified Room object into the database. 
+        /// </summary>
+        /// <param name="room">The Room to upload to the database.</param>
+        /// <returns></returns>
         public Room InsertRoom(Room room)
         {
             try
@@ -400,6 +461,12 @@ namespace WCFServiceWebRole1
             }
         }
 
+        /// <summary>
+        /// Updates the specified room with the new specfied Room object.
+        /// </summary>
+        /// <param name="roomId">The id of the room to update.</param>
+        /// <param name="newRoom">The Room object to update to.</param>
+        /// <returns></returns>
         public Room UpdateRoom(int roomId, Room newRoom)
         {
             try
@@ -421,6 +488,11 @@ namespace WCFServiceWebRole1
             }
         }
 
+        /// <summary>
+        /// Deletes the specified room from the database.
+        /// </summary>
+        /// <param name="roomId">The id of the room to remove from the database.</param>
+        /// <returns></returns>
         public Room DeleteRoom(int roomId)
         {
             try
@@ -439,6 +511,9 @@ namespace WCFServiceWebRole1
             }
         }
 
+        /// <summary>
+        /// Private method used to setup correct tracing settings. 
+        /// </summary>
         private void TracingSetup()
         {
             Trace.AutoFlush = true;
