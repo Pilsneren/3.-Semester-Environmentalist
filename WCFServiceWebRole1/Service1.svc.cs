@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -18,11 +21,19 @@ namespace WCFServiceWebRole1
             "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=true";
 
         private SqlConnection _sqlConnection;
+        private IPAddress _localAddress;
+
 
         public Service1()
         {
             _sqlConnection = new SqlConnection(ConnectionString);
             _sqlConnection.Open();
+
+            var hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+            _localAddress = hostEntry.AddressList[0].MapToIPv4();
+
+
+            TracingSetup();
         }
 
         public bool CheckDatabaseConnection()
@@ -48,13 +59,8 @@ namespace WCFServiceWebRole1
 
             try
             {
-<<<<<<< HEAD
-                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * " +
-                                                                 $"FROM Measurements " +
-                                                                 $"WHERE Rooms={roomId};", _sqlConnection))
-=======
+
                 using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * FROM Measurements WHERE Rooms={roomId} ORDER BY Date DESC;", _sqlConnection))
->>>>>>> origin/Danny
                 {
                     var reader = selectCommand.ExecuteReader();
 
@@ -77,6 +83,8 @@ namespace WCFServiceWebRole1
             {
 
             }
+
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromRoom() was called from client IP: {_localAddress}.");
 
             return measurements;
         }
@@ -115,7 +123,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetMeasurementsFromDate() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -153,6 +161,7 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetLatestMeasurements() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -198,6 +207,7 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromAll() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -222,7 +232,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetRooms() was called from client IP: {_localAddress}.");
             return rooms;
         }
 
@@ -272,7 +282,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByTemp() was called from client IP: {_localAddress}.");
             return rooms;
         }
 
@@ -322,7 +332,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-
+            Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByDate() was called from client IP: {_localAddress}.");
             return rooms;
         }
 
@@ -342,6 +352,7 @@ namespace WCFServiceWebRole1
                     insertCommand.Parameters.AddWithValue("@Date", measurement.Date);
                     insertCommand.ExecuteNonQuery();
 
+                    Trace.WriteLine($"\n{DateTime.Now}: Method InsertMeasurement() was called from client IP: {_localAddress}.");
                     return measurement;
                 }
             }
@@ -360,6 +371,8 @@ namespace WCFServiceWebRole1
                         _sqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();
+
+                    Trace.WriteLine($"\n{DateTime.Now}: Method DeleteMeasurement() was called from client IP: {_localAddress}.");
                     return measurement;
                 }
             }
@@ -376,6 +389,8 @@ namespace WCFServiceWebRole1
                 using (SqlCommand insertCommand = new SqlCommand($"INSERT INTO Rooms VALUES({room.Id}, '{room.Name}');", _sqlConnection))
                 {
                     insertCommand.ExecuteNonQuery();
+
+                    Trace.WriteLine($"\n{DateTime.Now}: Method InsertRoom() was called from client IP: {_localAddress}.");
                     return room;
                 }
             }
@@ -395,6 +410,8 @@ namespace WCFServiceWebRole1
                             $"UPDATE Rooms SET Id={newRoom.Id}, Name='{newRoom.Name}' WHERE Id='{roomId}';", _sqlConnection))
                 {
                     updateCommand.ExecuteNonQuery();
+
+                    Trace.WriteLine($"\n{DateTime.Now}: Method UpdateRoom() was called from client IP: {_localAddress}.");
                     return newRoom;
                 }
             }
@@ -411,6 +428,8 @@ namespace WCFServiceWebRole1
                 using (SqlCommand deleteCommand = new SqlCommand($"DELETE FROM Rooms WHERE Id='{roomId}';", _sqlConnection))
                 {
                     deleteCommand.ExecuteNonQuery();
+
+                    Trace.WriteLine($"\n{DateTime.Now}: Method DeleteRoom() was called from client IP: {_localAddress}.");
                     return new Room() { Id = roomId };
                 }
             }
@@ -418,6 +437,15 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
+        }
+
+        private void TracingSetup()
+        {
+            Trace.AutoFlush = true;
+            var filename = @"C:/temp/EnvironmentalistLog.txt";
+            Directory.CreateDirectory(Path.GetDirectoryName(filename));
+            FileStream fs = new FileStream(filename, FileMode.Append);
+            Trace.Listeners.Add(new TextWriterTraceListener(fs));
         }
     }
 }
