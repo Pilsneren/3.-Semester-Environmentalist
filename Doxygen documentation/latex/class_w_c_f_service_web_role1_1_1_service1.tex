@@ -1,0 +1,355 @@
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1}{}\section{W\+C\+F\+Service\+Web\+Role1.\+Service1 Class Reference}
+\label{class_w_c_f_service_web_role1_1_1_service1}\index{W\+C\+F\+Service\+Web\+Role1.\+Service1@{W\+C\+F\+Service\+Web\+Role1.\+Service1}}
+Inheritance diagram for W\+C\+F\+Service\+Web\+Role1.\+Service1\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_w_c_f_service_web_role1_1_1_service1}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_service1_a2db81b21b72abb231eebe975e129edc3}{Service1} ()
+\begin{DoxyCompactList}\small\item\em Constructor used to initialize and establish S\+Q\+L-\/connection to the database, while also setting up tracing. \end{DoxyCompactList}\item 
+bool \hyperlink{class_w_c_f_service_web_role1_1_1_service1_ab9f6ac135248447bd6546a3bb1cf042e}{Check\+Database\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Testmethod to ensure correct connection to the database. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_ab890a11f44c88ed8cabd4b441e28abb7}{Get\+Fifty\+Measurements\+From\+Room} (int room\+Id)
+\begin{DoxyCompactList}\small\item\em Returns the latest fifty measurements from the specified room. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_ac5bb626b88cb7f56a06cd5e8eeeb79ab}{Get\+Measurements\+From\+Date} (Date\+Time from\+Date, Date\+Time to\+Date, int room\+Id)
+\begin{DoxyCompactList}\small\item\em Returns all measurements between the specified dates from the room with the specified id. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a1dadae6d813e21bf454f3ef00741b32d}{Get\+Latest\+Measurements} ()
+\begin{DoxyCompactList}\small\item\em Returns the single latest measurement from all rooms. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_afe243908ef6a247439b92823d04d1108}{Get\+Latest\+Fifty\+Measurements\+From\+All} ()
+\begin{DoxyCompactList}\small\item\em Returns the fifty latest measurements from all rooms. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a5534cff1f8e4868d5f55380da04b3a7a}{Get\+Rooms} ()
+\begin{DoxyCompactList}\small\item\em Returns all rooms. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a085108986fe8820c44e8dcad62750cec}{Get\+Rooms\+By\+Temp} (double temperature, bool above=true)
+\begin{DoxyCompactList}\small\item\em Returns all rooms above/below the specified temperature. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ \hyperlink{class_w_c_f_service_web_role1_1_1_service1_afd71e5b1f7aad89f3655eb9c265c3705}{Get\+Rooms\+By\+Date} (Date\+Time date, bool after=true)
+\begin{DoxyCompactList}\small\item\em Returns all rooms with detected movement after/before the specified date. \end{DoxyCompactList}\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a91cca3523909a15506670a99f0a13739}{Insert\+Measurement} (\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} measurement)
+\begin{DoxyCompactList}\small\item\em Inserts the specified \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} object into the database. \end{DoxyCompactList}\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a0a05f8caeea4bfc3fb5e9675ae0a04e8}{Delete\+Measurement} (\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} measurement)
+\begin{DoxyCompactList}\small\item\em Deletes the specified \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} object from the database. \end{DoxyCompactList}\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a03546c5dac6e980720ecad385039e083}{Insert\+Room} (\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} room)
+\begin{DoxyCompactList}\small\item\em Inserts the specified \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} object into the database. \end{DoxyCompactList}\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} \hyperlink{class_w_c_f_service_web_role1_1_1_service1_a0d512fc6b1525964695786a336058c04}{Update\+Room} (int room\+Id, \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} new\+Room)
+\begin{DoxyCompactList}\small\item\em Updates the specified room with the new specfied \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} object. \end{DoxyCompactList}\item 
+\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} \hyperlink{class_w_c_f_service_web_role1_1_1_service1_abd3f431c0a5cc6138351ae81cb955286}{Delete\+Room} (int room\+Id)
+\begin{DoxyCompactList}\small\item\em Deletes the specified room from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a2db81b21b72abb231eebe975e129edc3}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Service1@{Service1}}
+\index{Service1@{Service1}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Service1()}]{\setlength{\rightskip}{0pt plus 5cm}W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Service1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a2db81b21b72abb231eebe975e129edc3}
+
+
+Constructor used to initialize and establish S\+Q\+L-\/connection to the database, while also setting up tracing. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_ab9f6ac135248447bd6546a3bb1cf042e}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Check\+Database\+Connection@{Check\+Database\+Connection}}
+\index{Check\+Database\+Connection@{Check\+Database\+Connection}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Check\+Database\+Connection()}]{\setlength{\rightskip}{0pt plus 5cm}bool W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Check\+Database\+Connection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_ab9f6ac135248447bd6546a3bb1cf042e}
+
+
+Testmethod to ensure correct connection to the database. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a0a05f8caeea4bfc3fb5e9675ae0a04e8}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Delete\+Measurement@{Delete\+Measurement}}
+\index{Delete\+Measurement@{Delete\+Measurement}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Delete\+Measurement(\+Measurement measurement)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Measurement} W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Delete\+Measurement (
+\begin{DoxyParamCaption}
+\item[{{\bf Measurement}}]{measurement}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a0a05f8caeea4bfc3fb5e9675ae0a04e8}
+
+
+Deletes the specified \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} object from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em measurement} & The \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} to remove from the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_abd3f431c0a5cc6138351ae81cb955286}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Delete\+Room@{Delete\+Room}}
+\index{Delete\+Room@{Delete\+Room}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Delete\+Room(int room\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Room} W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Delete\+Room (
+\begin{DoxyParamCaption}
+\item[{int}]{room\+Id}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_abd3f431c0a5cc6138351ae81cb955286}
+
+
+Deletes the specified room from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+Id} & The id of the room to remove from the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_ab890a11f44c88ed8cabd4b441e28abb7}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Fifty\+Measurements\+From\+Room@{Get\+Fifty\+Measurements\+From\+Room}}
+\index{Get\+Fifty\+Measurements\+From\+Room@{Get\+Fifty\+Measurements\+From\+Room}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Fifty\+Measurements\+From\+Room(int room\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Measurement}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Fifty\+Measurements\+From\+Room (
+\begin{DoxyParamCaption}
+\item[{int}]{room\+Id}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_ab890a11f44c88ed8cabd4b441e28abb7}
+
+
+Returns the latest fifty measurements from the specified room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+Id} & Id of the room to get latest fifty measurements from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_afe243908ef6a247439b92823d04d1108}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Latest\+Fifty\+Measurements\+From\+All@{Get\+Latest\+Fifty\+Measurements\+From\+All}}
+\index{Get\+Latest\+Fifty\+Measurements\+From\+All@{Get\+Latest\+Fifty\+Measurements\+From\+All}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Latest\+Fifty\+Measurements\+From\+All()}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Measurement}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Latest\+Fifty\+Measurements\+From\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_afe243908ef6a247439b92823d04d1108}
+
+
+Returns the fifty latest measurements from all rooms. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a1dadae6d813e21bf454f3ef00741b32d}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Latest\+Measurements@{Get\+Latest\+Measurements}}
+\index{Get\+Latest\+Measurements@{Get\+Latest\+Measurements}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Latest\+Measurements()}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Measurement}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Latest\+Measurements (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a1dadae6d813e21bf454f3ef00741b32d}
+
+
+Returns the single latest measurement from all rooms. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_ac5bb626b88cb7f56a06cd5e8eeeb79ab}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Measurements\+From\+Date@{Get\+Measurements\+From\+Date}}
+\index{Get\+Measurements\+From\+Date@{Get\+Measurements\+From\+Date}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Measurements\+From\+Date(\+Date\+Time from\+Date, Date\+Time to\+Date, int room\+Id)}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Measurement}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Measurements\+From\+Date (
+\begin{DoxyParamCaption}
+\item[{Date\+Time}]{from\+Date, }
+\item[{Date\+Time}]{to\+Date, }
+\item[{int}]{room\+Id}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_ac5bb626b88cb7f56a06cd5e8eeeb79ab}
+
+
+Returns all measurements between the specified dates from the room with the specified id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from\+Date} & From-\/date.\\
+\hline
+{\em to\+Date} & To-\/date.\\
+\hline
+{\em room\+Id} & Id of the room to get measurements from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a5534cff1f8e4868d5f55380da04b3a7a}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Rooms@{Get\+Rooms}}
+\index{Get\+Rooms@{Get\+Rooms}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Rooms()}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Room}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Rooms (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a5534cff1f8e4868d5f55380da04b3a7a}
+
+
+Returns all rooms. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_afd71e5b1f7aad89f3655eb9c265c3705}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Rooms\+By\+Date@{Get\+Rooms\+By\+Date}}
+\index{Get\+Rooms\+By\+Date@{Get\+Rooms\+By\+Date}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Rooms\+By\+Date(\+Date\+Time date, bool after=true)}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Room}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Rooms\+By\+Date (
+\begin{DoxyParamCaption}
+\item[{Date\+Time}]{date, }
+\item[{bool}]{after = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_afd71e5b1f7aad89f3655eb9c265c3705}
+
+
+Returns all rooms with detected movement after/before the specified date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & Date.\\
+\hline
+{\em after} & If left true, the method returns the rooms that detected movement after the specified date. If set to false, the method returns the rooms that detected movement before the specified date.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a085108986fe8820c44e8dcad62750cec}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Get\+Rooms\+By\+Temp@{Get\+Rooms\+By\+Temp}}
+\index{Get\+Rooms\+By\+Temp@{Get\+Rooms\+By\+Temp}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Get\+Rooms\+By\+Temp(double temperature, bool above=true)}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Room}$>$ W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Get\+Rooms\+By\+Temp (
+\begin{DoxyParamCaption}
+\item[{double}]{temperature, }
+\item[{bool}]{above = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a085108986fe8820c44e8dcad62750cec}
+
+
+Returns all rooms above/below the specified temperature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temperature} & Temperature.\\
+\hline
+{\em above} & If left true, the method returns the rooms above the specifed temperature. If set to false, the method returns the rooms below the specified temperature.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a91cca3523909a15506670a99f0a13739}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Insert\+Measurement@{Insert\+Measurement}}
+\index{Insert\+Measurement@{Insert\+Measurement}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Insert\+Measurement(\+Measurement measurement)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Measurement} W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Insert\+Measurement (
+\begin{DoxyParamCaption}
+\item[{{\bf Measurement}}]{measurement}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a91cca3523909a15506670a99f0a13739}
+
+
+Inserts the specified \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} object into the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em measurement} & The \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} to upload to the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a03546c5dac6e980720ecad385039e083}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Insert\+Room@{Insert\+Room}}
+\index{Insert\+Room@{Insert\+Room}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Insert\+Room(\+Room room)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Room} W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Insert\+Room (
+\begin{DoxyParamCaption}
+\item[{{\bf Room}}]{room}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a03546c5dac6e980720ecad385039e083}
+
+
+Inserts the specified \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} object into the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & The \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} to upload to the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+\hypertarget{class_w_c_f_service_web_role1_1_1_service1_a0d512fc6b1525964695786a336058c04}{}\index{W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}!Update\+Room@{Update\+Room}}
+\index{Update\+Room@{Update\+Room}!W\+C\+F\+Service\+Web\+Role1\+::\+Service1@{W\+C\+F\+Service\+Web\+Role1\+::\+Service1}}
+\subsubsection[{Update\+Room(int room\+Id, Room new\+Room)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Room} W\+C\+F\+Service\+Web\+Role1.\+Service1.\+Update\+Room (
+\begin{DoxyParamCaption}
+\item[{int}]{room\+Id, }
+\item[{{\bf Room}}]{new\+Room}
+\end{DoxyParamCaption}
+)}\label{class_w_c_f_service_web_role1_1_1_service1_a0d512fc6b1525964695786a336058c04}
+
+
+Updates the specified room with the new specfied \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+Id} & The id of the room to update.\\
+\hline
+{\em new\+Room} & The \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} object to update to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_w_c_f_service_web_role1_1_1_i_service1}{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Danny/\+Documents/\+Git\+Hub/3.-\/\+Semester-\/\+Environmentalist/\+W\+C\+F\+Service\+Web\+Role1/Service1.\+svc.\+cs\end{DoxyCompactItemize}

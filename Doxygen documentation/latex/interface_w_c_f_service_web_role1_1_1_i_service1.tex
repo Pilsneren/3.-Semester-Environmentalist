@@ -1,0 +1,55 @@
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1}{}\section{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1 Interface Reference}
+\label{interface_w_c_f_service_web_role1_1_1_i_service1}\index{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1@{W\+C\+F\+Service\+Web\+Role1.\+I\+Service1}}
+Inheritance diagram for W\+C\+F\+Service\+Web\+Role1.\+I\+Service1\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_w_c_f_service_web_role1_1_1_i_service1}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a8f00ee69713054a16d9ca49c36894e1c}{}bool {\bfseries Check\+Database\+Connection} ()\label{interface_w_c_f_service_web_role1_1_1_i_service1_a8f00ee69713054a16d9ca49c36894e1c}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_ab110be3e5449ab4a054da01efca9d4af}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ {\bfseries Get\+Fifty\+Measurements\+From\+Room} (int room\+Id)\label{interface_w_c_f_service_web_role1_1_1_i_service1_ab110be3e5449ab4a054da01efca9d4af}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a2f9c519200ba30529289f7c0a7fe011b}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ {\bfseries Get\+Latest\+Fifty\+Measurements\+From\+All} ()\label{interface_w_c_f_service_web_role1_1_1_i_service1_a2f9c519200ba30529289f7c0a7fe011b}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a6b5d59c027f59fee7fa0c93f31faddc0}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ {\bfseries Get\+Measurements\+From\+Date} (Date\+Time from\+Date, Date\+Time to\+Date, int room\+Id)\label{interface_w_c_f_service_web_role1_1_1_i_service1_a6b5d59c027f59fee7fa0c93f31faddc0}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a0f98f8ace348304de3344629ae92a641}{}Dictionary$<$ string, \hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} $>$ {\bfseries Get\+Latest\+Measurements} ()\label{interface_w_c_f_service_web_role1_1_1_i_service1_a0f98f8ace348304de3344629ae92a641}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a0e5d931c3553c9e6d03c8a63c8fd9101}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ {\bfseries Get\+Rooms} ()\label{interface_w_c_f_service_web_role1_1_1_i_service1_a0e5d931c3553c9e6d03c8a63c8fd9101}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_aceea31eb37174848da60e96ff5e30dad}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ {\bfseries Get\+Rooms\+By\+Temp} (double temperature, bool above=true)\label{interface_w_c_f_service_web_role1_1_1_i_service1_aceea31eb37174848da60e96ff5e30dad}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a16c69dc1cffb79158a160888bdeea8af}{}List$<$ \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} $>$ {\bfseries Get\+Rooms\+By\+Date} (Date\+Time date, bool above=true)\label{interface_w_c_f_service_web_role1_1_1_i_service1_a16c69dc1cffb79158a160888bdeea8af}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_ac8257abf679c212854debc3dfd2d1bf0}{}\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} {\bfseries Insert\+Measurement} (\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} measurement)\label{interface_w_c_f_service_web_role1_1_1_i_service1_ac8257abf679c212854debc3dfd2d1bf0}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_aaa639c48573356f49aae7c6260b91eca}{}\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} {\bfseries Delete\+Measurement} (\hyperlink{class_w_c_f_service_web_role1_1_1_measurement}{Measurement} measurement)\label{interface_w_c_f_service_web_role1_1_1_i_service1_aaa639c48573356f49aae7c6260b91eca}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a7398a7af401e117fd968f55ff0885642}{}\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} {\bfseries Insert\+Room} (\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} room)\label{interface_w_c_f_service_web_role1_1_1_i_service1_a7398a7af401e117fd968f55ff0885642}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_abab37e67560089b43240544d04c4f1c3}{}\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} {\bfseries Update\+Room} (int room\+Id, \hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} new\+Room)\label{interface_w_c_f_service_web_role1_1_1_i_service1_abab37e67560089b43240544d04c4f1c3}
+
+\item 
+\hypertarget{interface_w_c_f_service_web_role1_1_1_i_service1_a69a8714ed93d83d0bf623a118822d5f5}{}\hyperlink{class_w_c_f_service_web_role1_1_1_room}{Room} {\bfseries Delete\+Room} (int room\+Id)\label{interface_w_c_f_service_web_role1_1_1_i_service1_a69a8714ed93d83d0bf623a118822d5f5}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Danny/\+Documents/\+Git\+Hub/3.-\/\+Semester-\/\+Environmentalist/\+W\+C\+F\+Service\+Web\+Role1/I\+Service1.\+cs\end{DoxyCompactItemize}

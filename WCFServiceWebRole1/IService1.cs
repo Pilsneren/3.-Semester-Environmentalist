@@ -56,17 +56,37 @@ namespace WCFServiceWebRole1
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
+
    [DataContract]
     public class Measurement
     {
+        /// <summary>
+        /// The id of the measurement. Can be left as null.
+        /// </summary>
         [DataMember]
         public int Id { get; set; }
+
+        /// <summary>
+        /// The id of the room the measurement belongs to.
+        /// </summary>
         [DataMember]
         public int Room { get; set; }
+
+        /// <summary>
+        /// The temperature of the room.
+        /// </summary>
         [DataMember]
         public double Temperature { get; set; }
+
+        /// <summary>
+        /// The date and time when movement was last detected in the room.
+        /// </summary>
         [DataMember]
         public DateTime Movement { get; set; }
+
+        /// <summary>
+        /// The date and time for the latest movement detection.
+        /// </summary>
         [DataMember]
         public DateTime Date { get; set; }
 
@@ -76,8 +96,15 @@ namespace WCFServiceWebRole1
     [DataContract]
     public class Room
     {
+        /// <summary>
+        /// The id of the room.
+        /// </summary>
         [DataMember]
         public int Id { get; set; }
+
+        /// <summary>
+        /// The name of the room. 
+        /// </summary>
         [DataMember]
         public string Name { get; set; }
 

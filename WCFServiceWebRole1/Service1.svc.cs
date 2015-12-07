@@ -517,7 +517,7 @@ namespace WCFServiceWebRole1
         private void TracingSetup()
         {
             Trace.AutoFlush = true;
-            var filename = @"C:/temp/EnvironmentalistLog.txt";
+            var filename = @"C:/Environmentalist/Log.txt";
             Directory.CreateDirectory(Path.GetDirectoryName(filename));
             FileStream fs = new FileStream(filename, FileMode.Append);
             Trace.Listeners.Add(new TextWriterTraceListener(fs));
