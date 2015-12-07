@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ddacloudservice.cloudapp.net/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ddacloudservice.cloudapp.net/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ddacloudservice.cloudapp.net/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFServiceWebRole1" />
+      <xsd:import schemaLocation="http://ddacloudservice.cloudapp.net/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_CheckDatabaseConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDatabaseConnection" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CheckDatabaseConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDatabaseConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFiftyMeasurementsFromRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFiftyMeasurementsFromRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFiftyMeasurementsFromRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFiftyMeasurementsFromRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLatestFiftyMeasurementsFromAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestFiftyMeasurementsFromAll" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLatestFiftyMeasurementsFromAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestFiftyMeasurementsFromAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetMeasurementsFromDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMeasurementsFromDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetMeasurementsFromDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMeasurementsFromDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLatestMeasurements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMeasurements" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLatestMeasurements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMeasurementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRooms" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoomsByTemp_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsByTemp" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoomsByTemp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsByTempResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoomsByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsByDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoomsByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertMeasurement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMeasurement_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteMeasurement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoom" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoomResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="CheckDatabaseConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CheckDatabaseConnection" message="tns:IService1_CheckDatabaseConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CheckDatabaseConnectionResponse" message="tns:IService1_CheckDatabaseConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFiftyMeasurementsFromRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetFiftyMeasurementsFromRoom" message="tns:IService1_GetFiftyMeasurementsFromRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetFiftyMeasurementsFromRoomResponse" message="tns:IService1_GetFiftyMeasurementsFromRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestFiftyMeasurementsFromAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLatestFiftyMeasurementsFromAll" message="tns:IService1_GetLatestFiftyMeasurementsFromAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLatestFiftyMeasurementsFromAllResponse" message="tns:IService1_GetLatestFiftyMeasurementsFromAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasurementsFromDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetMeasurementsFromDate" message="tns:IService1_GetMeasurementsFromDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetMeasurementsFromDateResponse" message="tns:IService1_GetMeasurementsFromDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMeasurements">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLatestMeasurements" message="tns:IService1_GetLatestMeasurements_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLatestMeasurementsResponse" message="tns:IService1_GetLatestMeasurements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetRooms" message="tns:IService1_GetRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetRoomsResponse" message="tns:IService1_GetRooms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomsByTemp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetRoomsByTemp" message="tns:IService1_GetRoomsByTemp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetRoomsByTempResponse" message="tns:IService1_GetRoomsByTemp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomsByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetRoomsByDate" message="tns:IService1_GetRoomsByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetRoomsByDateResponse" message="tns:IService1_GetRoomsByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertMeasurement" message="tns:IService1_InsertMeasurement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertMeasurementResponse" message="tns:IService1_InsertMeasurement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMeasurement">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteMeasurement" message="tns:IService1_DeleteMeasurement_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteMeasurementResponse" message="tns:IService1_DeleteMeasurement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertRoom" message="tns:IService1_InsertRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertRoomResponse" message="tns:IService1_InsertRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateRoom" message="tns:IService1_UpdateRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateRoomResponse" message="tns:IService1_UpdateRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteRoom" message="tns:IService1_DeleteRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteRoomResponse" message="tns:IService1_DeleteRoom_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckDatabaseConnection">
+      <soap:operation soapAction="http://tempuri.org/IService1/CheckDatabaseConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFiftyMeasurementsFromRoom">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetFiftyMeasurementsFromRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestFiftyMeasurementsFromAll">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLatestFiftyMeasurementsFromAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasurementsFromDate">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetMeasurementsFromDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMeasurements">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLatestMeasurements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetRooms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomsByTemp">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetRoomsByTemp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomsByDate">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetRoomsByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurement">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertMeasurement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMeasurement">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteMeasurement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertRoom">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoom">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://ddacloudservice.cloudapp.net/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

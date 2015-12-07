@@ -36,6 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +53,56 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Service References\EnvironmentalistService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\EnvironmentalistService\Service1.wsdl" />
+    <None Include="Service References\EnvironmentalistService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EnvironmentalistService\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EnvironmentalistService\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EnvironmentalistService\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EnvironmentalistService\UnitTestProject.EnvironmentalistService.Measurement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EnvironmentalistService\UnitTestProject.EnvironmentalistService.Room.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\EnvironmentalistService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EnvironmentalistService\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EnvironmentalistService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EnvironmentalistService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EnvironmentalistService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

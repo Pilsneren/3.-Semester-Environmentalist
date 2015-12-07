@@ -7,9 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Security.AccessControl;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
 
 namespace WCFServiceWebRole1
 {
@@ -24,7 +27,8 @@ namespace WCFServiceWebRole1
             "Server=tcp:parbstit.database.windows.net,1433;Database=Environmentalist;User ID=Pilsneren@parbstit;Password=Admin123;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=true";
 
         private SqlConnection _sqlConnection;
-        private IPAddress _localAddress;
+        private string _localAddress;
+        
 
 
         /// <summary>
@@ -34,12 +38,8 @@ namespace WCFServiceWebRole1
         {
             _sqlConnection = new SqlConnection(ConnectionString);
             _sqlConnection.Open();
-
-            var hostEntry = Dns.GetHostEntry(Dns.GetHostName());
-            _localAddress = hostEntry.AddressList[0].MapToIPv4();
-
-
-            TracingSetup();
+            
+            //TracingSetup();
         }
 
         /// <summary>
@@ -53,7 +53,17 @@ namespace WCFServiceWebRole1
                 using (_sqlConnection = new SqlConnection(ConnectionString))
                 {
                     _sqlConnection.Open();
+
+                    OperationContext context = OperationContext.Current;
+                    MessageProperties myProp = context.IncomingMessageProperties;
+                    RemoteEndpointMessageProperty endpoint = myProp[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+                    _localAddress = endpoint.Address;
+                   
+                    Trace.WriteLine(_localAddress);
+
+
                     return true;
+
                 }
             }
             catch (SqlException)
@@ -99,7 +109,7 @@ namespace WCFServiceWebRole1
 
             }
 
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromRoom() was called from client IP: {_localAddress}.");
+            //Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromRoom() was called from client IP: {_localAddress}.");
 
             return measurements;
         }
@@ -145,7 +155,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetMeasurementsFromDate() was called from client IP: {_localAddress}.");
+            //Trace.WriteLine($"\n{DateTime.Now}: Method GetMeasurementsFromDate() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -187,7 +197,7 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetLatestMeasurements() was called from client IP: {_localAddress}.");
+           // Trace.WriteLine($"\n{DateTime.Now}: Method GetLatestMeasurements() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -237,7 +247,7 @@ namespace WCFServiceWebRole1
             {
                 return null;
             }
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromAll() was called from client IP: {_localAddress}.");
+            //Trace.WriteLine($"\n{DateTime.Now}: Method GetFiftyMeasurementsFromAll() was called from client IP: {_localAddress}.");
             return measurements;
         }
 
@@ -322,7 +332,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByTemp() was called from client IP: {_localAddress}.");
+            //Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByTemp() was called from client IP: {_localAddress}.");
             return rooms;
         }
 
@@ -378,7 +388,7 @@ namespace WCFServiceWebRole1
             {
 
             }
-            Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByDate() was called from client IP: {_localAddress}.");
+            //Trace.WriteLine($"\n{DateTime.Now}: Method GetRoomsByDate() was called from client IP: {_localAddress}.");
             return rooms;
         }
 
@@ -403,7 +413,7 @@ namespace WCFServiceWebRole1
                     insertCommand.Parameters.AddWithValue("@Date", measurement.Date);
                     insertCommand.ExecuteNonQuery();
 
-                    Trace.WriteLine($"\n{DateTime.Now}: Method InsertMeasurement() was called from client IP: {_localAddress}.");
+                    //Trace.WriteLine($"\n{DateTime.Now}: Method InsertMeasurement() was called from client IP: {_localAddress}.");
                     return measurement;
                 }
             }
@@ -428,7 +438,7 @@ namespace WCFServiceWebRole1
                 {
                     deleteCommand.ExecuteNonQuery();
 
-                    Trace.WriteLine($"\n{DateTime.Now}: Method DeleteMeasurement() was called from client IP: {_localAddress}.");
+                    //Trace.WriteLine($"\n{DateTime.Now}: Method DeleteMeasurement() was called from client IP: {_localAddress}.");
                     return measurement;
                 }
             }
@@ -451,7 +461,7 @@ namespace WCFServiceWebRole1
                 {
                     insertCommand.ExecuteNonQuery();
 
-                    Trace.WriteLine($"\n{DateTime.Now}: Method InsertRoom() was called from client IP: {_localAddress}.");
+                    //Trace.WriteLine($"\n{DateTime.Now}: Method InsertRoom() was called from client IP: {_localAddress}.");
                     return room;
                 }
             }
@@ -478,7 +488,7 @@ namespace WCFServiceWebRole1
                 {
                     updateCommand.ExecuteNonQuery();
 
-                    Trace.WriteLine($"\n{DateTime.Now}: Method UpdateRoom() was called from client IP: {_localAddress}.");
+                    //Trace.WriteLine($"\n{DateTime.Now}: Method UpdateRoom() was called from client IP: {_localAddress}.");
                     return newRoom;
                 }
             }
@@ -501,7 +511,7 @@ namespace WCFServiceWebRole1
                 {
                     deleteCommand.ExecuteNonQuery();
 
-                    Trace.WriteLine($"\n{DateTime.Now}: Method DeleteRoom() was called from client IP: {_localAddress}.");
+                    //Trace.WriteLine($"\n{DateTime.Now}: Method DeleteRoom() was called from client IP: {_localAddress}.");
                     return new Room() { Id = roomId };
                 }
             }
@@ -519,8 +529,10 @@ namespace WCFServiceWebRole1
             Trace.AutoFlush = true;
             var filename = @"C:/Environmentalist/Log.txt";
             Directory.CreateDirectory(Path.GetDirectoryName(filename));
-            FileStream fs = new FileStream(filename, FileMode.Append);
+            FileStream fs = new FileStream(filename, FileMode.Append, FileAccess.Write, FileShare.Write);
             Trace.Listeners.Add(new TextWriterTraceListener(fs));
+
+            
         }
     }
 }
