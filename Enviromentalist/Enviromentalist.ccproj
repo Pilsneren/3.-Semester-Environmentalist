@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <PublishProfile Include="Profiles\ddacloudserviceProduction1.azurePubxml" />
+    <PublishProfile Include="Profiles\ZaksersProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

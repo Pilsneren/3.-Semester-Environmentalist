@@ -20,6 +20,9 @@ namespace WCFServiceWebRole1
         List<Measurement> GetFiftyMeasurementsFromRoom(int roomId);
 
         [OperationContract]
+        List<Measurement> GetLatestFiftyMeasurementsFromAll();
+
+        [OperationContract]
         List<Measurement> GetMeasurementsFromDate(DateTime fromDate, DateTime toDate, int roomId);
 
         [OperationContract]

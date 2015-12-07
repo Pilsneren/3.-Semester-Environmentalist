@@ -48,7 +48,9 @@ namespace WCFServiceWebRole1
 
             try
             {
-                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * FROM Measurements WHERE Rooms={roomId};", _sqlConnection))
+                using (SqlCommand selectCommand = new SqlCommand($"SELECT TOP(50) * " +
+                                                                 $"FROM Measurements " +
+                                                                 $"WHERE Rooms={roomId};", _sqlConnection))
                 {
                     var reader = selectCommand.ExecuteReader();
 
@@ -140,6 +142,51 @@ namespace WCFServiceWebRole1
 
                         };
                         measurements.Add(reader.GetString(1), m);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
+            return measurements;
+        }
+
+        public List<Measurement> GetLatestFiftyMeasurementsFromAll()
+        {
+            List<Measurement> measurements = new List<Measurement>();
+
+
+            try
+            {
+                using (
+                    SqlCommand insertCommand =
+                        new SqlCommand(
+                            @"SELECT Measurements.Id, Measurements.Rooms, Measurements.Temperature, 
+                            Measurements.Movement, Measurements.Date, Rooms.Name
+                            FROM (
+                                SELECT Measurements.*, Rank() 
+                                over(Partition BY Measurements.Rooms 
+                                ORDER BY Measurements.Date DESC) AS Rank
+                                FROM Measurements
+                            ) Measurements 
+                            INNER JOIN Rooms ON Rooms.Id = Measurements.Rooms 
+                            WHERE Rank <= 50 ",
+                            _sqlConnection))
+                {
+                    var reader = insertCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var m = new Measurement()
+                        {
+                            Id = reader.GetInt32(0),
+                            Room = reader.GetInt32(1),
+                            Temperature = reader.GetDouble(2),
+                            Movement = reader.GetDateTime(3),
+                            Date = reader.GetDateTime(4)
+                        };
+                        measurements.Add(m);
                     }
                 }
             }
