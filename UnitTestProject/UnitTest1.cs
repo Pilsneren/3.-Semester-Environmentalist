@@ -40,10 +40,13 @@ namespace UnitTestProject
             Assert.IsNotNull(measurementsByDate);
         }
 
+        /// <summary>
+        /// Ensures that only the latest fifty measurements from the specified room is recieved. 
+        /// </summary>
         [TestMethod]
         public void TestMethod3()
         {
-            var latestFiftyMeasurementsFromAll = _service.GetLatestFiftyMeasurementsFromAll();
+            var latestFiftyMeasurementsFromAll = _service.GetFiftyMeasurementsFromRoom(205);
 
             Assert.AreEqual(50, latestFiftyMeasurementsFromAll.Length);
         }
